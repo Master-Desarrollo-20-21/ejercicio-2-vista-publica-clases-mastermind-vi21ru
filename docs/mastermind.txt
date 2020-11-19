@@ -1,0 +1,60 @@
+@startuml
+
+class Mastermind{
++ play()
++ {static} main()
+}
+
+class Game{
+- AttemptList[]
++ play()
+}
+
+class Combination{
++ generateRandom()
++ show()
+}
+
+class ProposedCombination{
++ isValid()
+- checkLength()
+- checkColors()
+}
+class SecretCombination{
+
+}
+
+class Attempt{
++ isWinner()
++ getBlacks()
++ getWhites()
+- isEquals(Combination secretCombination)
+}
+
+
+class Console {
+
+}
+
+Enum Color{
+RED
+BLUE
+YELLOW
+ORANGE
+PINK
+GREEN
+
+}
+
+Mastermind *--> Game
+Game o--> "0..10" Attempt 
+SecretCombination --|> Combination
+ProposedCombination --|> Combination
+Combination *--> "4" Color
+Game *--> SecretCombination
+Attempt *--> ProposedCombination
+Attempt --> SecretCombination
+Combination ..> Console
+Attempt ..> Console
+Game ..> Console
+@enduml
